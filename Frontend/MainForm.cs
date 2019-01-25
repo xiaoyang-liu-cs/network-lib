@@ -215,17 +215,16 @@ namespace ImageNST
                 {
                     OutputBox.ImageLocation = appPath + "/Backend/output/output.jpg";
                 }
-
-                Train.Enabled = true;
             }
             else
             {
-                Train.Text = "Train Model";
                 PythonBackend.AppendText("User Interrupt.");
                 PythonBackend.AppendText(Environment.NewLine);
                 p.Kill();
-                isTraining = false;
             }
+            Train.Enabled = true;
+            Train.Text = "Train Model";
+            isTraining = false;
         }
 
 
