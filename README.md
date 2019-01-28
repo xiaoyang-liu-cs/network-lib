@@ -4,7 +4,7 @@
 [![alt text](https://img.shields.io/github/downloads/xAsiimov/ImageNST/total.svg)](https://github.com/xAsiimov/ImageNST/releases/latest)
 
 ---
-Neural Style Transfer Tensorflow Model With CSharp UI.
+Neural Style Transfer Tensorflow Model With C# UI.
 
 ImageNST is licensed under MIT LICENSE.
 
