@@ -120,8 +120,8 @@ namespace ImageNST
 
         private void GithubBox_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/xAsiimov/ImageNST");
-        }
+            Process.Start("https://github.com/xAsiimov/ImageNST");
+        }  
 
         private void MainForm_Load(object sender, EventArgs e)
         {
