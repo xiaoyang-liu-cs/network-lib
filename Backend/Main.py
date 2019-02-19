@@ -1,9 +1,7 @@
 import Model
 import Image
-
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-
 import tensorflow as tf
 
 mpl.rcParams['figure.figsize'] = (10, 10)

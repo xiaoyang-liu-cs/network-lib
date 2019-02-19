@@ -1,12 +1,8 @@
 import Image
-
 import matplotlib.pyplot as plt
 import matplotlib as mpl
-
 import numpy as np
-
 import tensorflow as tf
-
 from tensorflow.python.keras import models
 
 mpl.rcParams['figure.figsize'] = (10, 10)
@@ -64,7 +60,6 @@ def get_style_loss(base_style, gram_target):
     # We scale the loss at a given layer by the size of the feature map and the number of filters
     height, width, channels = base_style.get_shape().as_list()
     gram_style = gram_matrix(base_style)
-
     return tf.reduce_mean(tf.square(gram_style - gram_target))  # / (4. * (channels ** 2) * (width * height) ** 2)
 
 
@@ -86,11 +81,9 @@ def get_feature_representations(model, content_path, style_path):
     # Load our images in
     content_image = Image.load_and_process_img(content_path)
     style_image = Image.load_and_process_img(style_path)
-
     # batch compute content and style features
     style_outputs = model(style_image)
     content_outputs = model(content_image)
-
     # Get the style and content feature representations from our model
     style_features = [style_layer[0] for style_layer in style_outputs[:num_style_layers]]
     content_features = [content_layer[0] for content_layer in content_outputs[num_style_layers:]]
@@ -99,7 +92,6 @@ def get_feature_representations(model, content_path, style_path):
 
 def compute_loss(model, loss_weights, init_image, gram_style_features, content_features):
     """This function will compute the loss total loss.
-
     Arguments:
       model: The model that will give us access to the intermediate layers
       loss_weights: The weights of each contribution of each loss function.
@@ -111,7 +103,6 @@ def compute_loss(model, loss_weights, init_image, gram_style_features, content_f
         defined style layers of interest.
       content_features: Precomputed outputs from defined content layers of
         interest.
-
     Returns:
       returns the total loss, style loss, content loss, and total variational loss
     """
