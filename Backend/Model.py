@@ -1,12 +1,8 @@
-import Image
-import matplotlib.pyplot as plt
-import matplotlib as mpl
 import numpy as np
 import tensorflow as tf
 from tensorflow.python.keras import models
 
-mpl.rcParams['figure.figsize'] = (10, 10)
-mpl.rcParams['axes.grid'] = False
+import Image
 
 content_layers = ['block5_conv2']
 style_layers = ['block1_conv1',
@@ -220,13 +216,5 @@ def run_style_transfer(content_path,
                   'style loss: {:.4e}, '
                   'content loss: {:.4e}'
                   .format(loss, style_score, content_score))
-
-    # plt.figure(figsize=(14, 4))
-
-    # for i, img in enumerate(imgs):
-    #     plt.subplot(num_rows, num_cols, i + 1)
-    #     plt.imshow(img)
-    #     plt.xticks([])
-    #     plt.yticks([])
 
     return best_img, best_loss
