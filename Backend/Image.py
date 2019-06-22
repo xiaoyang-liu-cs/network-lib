@@ -17,8 +17,6 @@ def load_img(path_to_img):
     scale = max_dim / long
     img = img.resize((round(img.size[0] * scale), round(img.size[1] * scale)), Image.ANTIALIAS)
     img = kp_image.img_to_array(img)
-
-    # We need to broadcast the image array such that it has a batch dimension
     img = np.expand_dims(img, axis=0)
     return img
 
@@ -77,6 +75,6 @@ def show_results(best_img, content_path, style_path, show_large_final=True):
         plt.show()
 
 
-def save_results(best_img):
+def save_results(best_img, path):
     img = Image.fromarray(best_img)
-    img.save('output/output.jpg')
+    img.save(path)

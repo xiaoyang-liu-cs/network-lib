@@ -41,4 +41,4 @@ best, best_loss = Model.run_style_transfer(content_path,
 
 Image.show_results(best, content_path, style_path)
 
-Image.save_results(best)
+Image.save_results(best, 'output/output.jpg')

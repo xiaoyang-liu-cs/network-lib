@@ -150,7 +150,7 @@ def run_style_transfer(content_path,
                        style_path,
                        num_iterations=1000,
                        content_weight=1e3,
-                       style_weight=1e-2):
+                       style_weight=1e-3):
     # We don't need to (or want to) train any layers of our model, so we set their
     # trainable to false.
     model = get_model()
@@ -209,6 +209,10 @@ def run_style_transfer(content_path,
             # Use the .numpy() method to get the concrete numpy array
             plot_img = init_image.numpy()
             plot_img = Image.deprocess_img(plot_img)
+
+            path = 'output/output_' + str(i) + '.jpg'
+
+            Image.save_results(plot_img, path)
             imgs.append(plot_img)
 
             print('Iteration: {}'.format(i))
@@ -217,12 +221,12 @@ def run_style_transfer(content_path,
                   'content loss: {:.4e}'
                   .format(loss, style_score, content_score))
 
-    plt.figure(figsize=(14, 4))
+    # plt.figure(figsize=(14, 4))
 
-    for i, img in enumerate(imgs):
-        plt.subplot(num_rows, num_cols, i + 1)
-        plt.imshow(img)
-        plt.xticks([])
-        plt.yticks([])
+    # for i, img in enumerate(imgs):
+    #     plt.subplot(num_rows, num_cols, i + 1)
+    #     plt.imshow(img)
+    #     plt.xticks([])
+    #     plt.yticks([])
 
     return best_img, best_loss
