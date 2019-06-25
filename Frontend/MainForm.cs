@@ -19,7 +19,7 @@ namespace ImageNST
         private bool isMouseDown = false;
         private Point FormLocation;
         private Point mouseOffset;
-
+        private int step = 0;
         private string appPath = Application.StartupPath;
         private bool isTraining = false;
 
@@ -44,10 +44,6 @@ namespace ImageNST
             InitializeComponent();
             IgnoreDPI();
         }
-
-
-
-
 
         public static int IgnoreDPI()
         {
@@ -121,7 +117,7 @@ namespace ImageNST
         private void GithubBox_Click(object sender, EventArgs e)
         {
             Process.Start("https://github.com/xAsiimov/ImageNST");
-        }  
+        }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
@@ -188,7 +184,7 @@ namespace ImageNST
             }
         }
 
-        private async void Train_Click(object sender, EventArgs e)
+        private void Train_Click(object sender, EventArgs e)
         {
             if (!isTraining)
             {
@@ -199,34 +195,21 @@ namespace ImageNST
                 p.StartInfo.Arguments = "Main.py";
                 p.StartInfo.CreateNoWindow = true;
 
+                timer.Enabled = true;
+
                 Train.Text = "Interrupt Training";
                 isTraining = true;
                 p.Start();
-                PythonBackend.AppendText("Start Training. It may take a few minutes.\n");
-                PythonBackend.AppendText(Environment.NewLine);
-                string line;
-                while ((line = await p.StandardOutput.ReadLineAsync()) != null)
-                {
-                    PythonBackend.AppendText(line);
-                    PythonBackend.AppendText(Environment.NewLine);
-                }
-
-                if (File.Exists(appPath + "/Backend/output/output.jpg"))
-                {
-                    OutputBox.ImageLocation = appPath + "/Backend/output/output.jpg";
-                }
             }
             else
             {
-                PythonBackend.AppendText("User Interrupt.");
-                PythonBackend.AppendText(Environment.NewLine);
                 p.Kill();
-            }
-            Train.Enabled = true;
-            Train.Text = "Train Model";
-            isTraining = false;
-        }
 
+                Train.Enabled = true;
+                Train.Text = "Train Model";
+                isTraining = false;
+            }
+        }
 
         private void SaveOutput_Click(object sender, EventArgs e)
         {
@@ -238,6 +221,21 @@ namespace ImageNST
                 }
             }
         }
+
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+
+            int display_step = step * 100;
+
+            // MessageBox.Show(appPath + "/Backend/output/output_" + display_step.ToString() + ".jpg");
+            
+            if (File.Exists(appPath + "/Backend/output/output_" + display_step.ToString() + ".jpg"))
+            {
+                OutputBox.ImageLocation = appPath + "/Backend/output/output_" + display_step.ToString() + ".jpg";
+                progressBar.PerformStep();
+                step = step + 1;
+                //File.Delete(appPath + "/Backend/output/output_" + display_step.ToString() + ".jpg");
+            }
+        }
     }
 }
-

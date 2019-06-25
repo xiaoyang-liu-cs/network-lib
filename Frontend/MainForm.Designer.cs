@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.AddContent = new System.Windows.Forms.Button();
             this.AddStyle = new System.Windows.Forms.Button();
@@ -41,10 +42,11 @@
             this.ContentBox = new System.Windows.Forms.PictureBox();
             this.StyleBox = new System.Windows.Forms.PictureBox();
             this.OutputBox = new System.Windows.Forms.PictureBox();
-            this.PythonBackend = new System.Windows.Forms.TextBox();
             this.ContentLabel = new System.Windows.Forms.Label();
             this.StyleLabel = new System.Windows.Forms.Label();
             this.OutputLabel = new System.Windows.Forms.Label();
+            this.progressBar = new System.Windows.Forms.ProgressBar();
+            this.timer = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.GithubBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Close)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Minimize)).BeginInit();
@@ -58,7 +60,7 @@
             this.AddContent.BackColor = System.Drawing.Color.White;
             this.AddContent.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddContent.ForeColor = System.Drawing.Color.Gray;
-            this.AddContent.Location = new System.Drawing.Point(746, 81);
+            this.AddContent.Location = new System.Drawing.Point(804, 83);
             this.AddContent.Name = "AddContent";
             this.AddContent.Size = new System.Drawing.Size(196, 72);
             this.AddContent.TabIndex = 2;
@@ -71,7 +73,7 @@
             this.AddStyle.BackColor = System.Drawing.Color.White;
             this.AddStyle.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.AddStyle.ForeColor = System.Drawing.Color.Gray;
-            this.AddStyle.Location = new System.Drawing.Point(746, 198);
+            this.AddStyle.Location = new System.Drawing.Point(804, 220);
             this.AddStyle.Name = "AddStyle";
             this.AddStyle.Size = new System.Drawing.Size(196, 72);
             this.AddStyle.TabIndex = 3;
@@ -85,7 +87,7 @@
             this.Train.BackColor = System.Drawing.Color.White;
             this.Train.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Train.ForeColor = System.Drawing.Color.Gray;
-            this.Train.Location = new System.Drawing.Point(746, 315);
+            this.Train.Location = new System.Drawing.Point(804, 357);
             this.Train.Name = "Train";
             this.Train.Size = new System.Drawing.Size(196, 72);
             this.Train.TabIndex = 4;
@@ -99,7 +101,7 @@
             this.SaveOutput.BackColor = System.Drawing.Color.White;
             this.SaveOutput.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.SaveOutput.ForeColor = System.Drawing.Color.Gray;
-            this.SaveOutput.Location = new System.Drawing.Point(746, 432);
+            this.SaveOutput.Location = new System.Drawing.Point(804, 494);
             this.SaveOutput.Name = "SaveOutput";
             this.SaveOutput.Size = new System.Drawing.Size(196, 72);
             this.SaveOutput.TabIndex = 5;
@@ -114,7 +116,7 @@
             this.Label.ForeColor = System.Drawing.SystemColors.GrayText;
             this.Label.Location = new System.Drawing.Point(37, 14);
             this.Label.Name = "Label";
-            this.Label.Size = new System.Drawing.Size(171, 30);
+            this.Label.Size = new System.Drawing.Size(117, 20);
             this.Label.TabIndex = 12;
             this.Label.Text = "ImageNST RC1";
             // 
@@ -123,9 +125,9 @@
             this.StatusLabel.AutoSize = true;
             this.StatusLabel.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StatusLabel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.StatusLabel.Location = new System.Drawing.Point(37, 527);
+            this.StatusLabel.Location = new System.Drawing.Point(37, 581);
             this.StatusLabel.Name = "StatusLabel";
-            this.StatusLabel.Size = new System.Drawing.Size(140, 30);
+            this.StatusLabel.Size = new System.Drawing.Size(95, 20);
             this.StatusLabel.TabIndex = 13;
             this.StatusLabel.Text = "MIT License";
             // 
@@ -133,7 +135,7 @@
             // 
             this.GithubBox.Image = global::ImageNST.Properties.Resources.github;
             this.GithubBox.ImageLocation = "";
-            this.GithubBox.Location = new System.Drawing.Point(827, 12);
+            this.GithubBox.Location = new System.Drawing.Point(885, 14);
             this.GithubBox.Name = "GithubBox";
             this.GithubBox.Size = new System.Drawing.Size(32, 32);
             this.GithubBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -144,7 +146,7 @@
             // Close
             // 
             this.Close.Image = global::ImageNST.Properties.Resources.CloseW;
-            this.Close.Location = new System.Drawing.Point(918, 6);
+            this.Close.Location = new System.Drawing.Point(976, 8);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(47, 48);
             this.Close.TabIndex = 11;
@@ -154,7 +156,7 @@
             // Minimize
             // 
             this.Minimize.Image = global::ImageNST.Properties.Resources.MinimizeW;
-            this.Minimize.Location = new System.Drawing.Point(865, 6);
+            this.Minimize.Location = new System.Drawing.Point(923, 8);
             this.Minimize.Name = "Minimize";
             this.Minimize.Size = new System.Drawing.Size(47, 48);
             this.Minimize.TabIndex = 10;
@@ -172,7 +174,7 @@
             // 
             // StyleBox
             // 
-            this.StyleBox.Location = new System.Drawing.Point(281, 81);
+            this.StyleBox.Location = new System.Drawing.Point(41, 304);
             this.StyleBox.Name = "StyleBox";
             this.StyleBox.Size = new System.Drawing.Size(200, 200);
             this.StyleBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -181,31 +183,21 @@
             // 
             // OutputBox
             // 
-            this.OutputBox.Location = new System.Drawing.Point(521, 81);
+            this.OutputBox.Location = new System.Drawing.Point(256, 81);
             this.OutputBox.Name = "OutputBox";
-            this.OutputBox.Size = new System.Drawing.Size(200, 200);
+            this.OutputBox.Size = new System.Drawing.Size(527, 423);
             this.OutputBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.OutputBox.TabIndex = 17;
             this.OutputBox.TabStop = false;
-            // 
-            // PythonBackend
-            // 
-            this.PythonBackend.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PythonBackend.Location = new System.Drawing.Point(41, 321);
-            this.PythonBackend.Multiline = true;
-            this.PythonBackend.Name = "PythonBackend";
-            this.PythonBackend.ReadOnly = true;
-            this.PythonBackend.Size = new System.Drawing.Size(678, 183);
-            this.PythonBackend.TabIndex = 18;
             // 
             // ContentLabel
             // 
             this.ContentLabel.AutoSize = true;
             this.ContentLabel.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ContentLabel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.ContentLabel.Location = new System.Drawing.Point(87, 284);
+            this.ContentLabel.Location = new System.Drawing.Point(101, 281);
             this.ContentLabel.Name = "ContentLabel";
-            this.ContentLabel.Size = new System.Drawing.Size(101, 30);
+            this.ContentLabel.Size = new System.Drawing.Size(67, 20);
             this.ContentLabel.TabIndex = 19;
             this.ContentLabel.Text = "Content";
             // 
@@ -214,9 +206,9 @@
             this.StyleLabel.AutoSize = true;
             this.StyleLabel.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.StyleLabel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.StyleLabel.Location = new System.Drawing.Point(348, 284);
+            this.StyleLabel.Location = new System.Drawing.Point(111, 507);
             this.StyleLabel.Name = "StyleLabel";
-            this.StyleLabel.Size = new System.Drawing.Size(63, 30);
+            this.StyleLabel.Size = new System.Drawing.Size(43, 20);
             this.StyleLabel.TabIndex = 20;
             this.StyleLabel.Text = "Style";
             // 
@@ -225,22 +217,36 @@
             this.OutputLabel.AutoSize = true;
             this.OutputLabel.Font = new System.Drawing.Font("Microsoft JhengHei UI Light", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.OutputLabel.ForeColor = System.Drawing.SystemColors.GrayText;
-            this.OutputLabel.Location = new System.Drawing.Point(581, 284);
+            this.OutputLabel.Location = new System.Drawing.Point(476, 507);
             this.OutputLabel.Name = "OutputLabel";
-            this.OutputLabel.Size = new System.Drawing.Size(92, 30);
+            this.OutputLabel.Size = new System.Drawing.Size(60, 20);
             this.OutputLabel.TabIndex = 21;
             this.OutputLabel.Text = "Output";
+            // 
+            // progressBar
+            // 
+            this.progressBar.Location = new System.Drawing.Point(41, 539);
+            this.progressBar.Maximum = 742;
+            this.progressBar.Name = "progressBar";
+            this.progressBar.Size = new System.Drawing.Size(742, 26);
+            this.progressBar.Step = 75;
+            this.progressBar.TabIndex = 22;
+            // 
+            // timer
+            // 
+            this.timer.Interval = 1000;
+            this.timer.Tick += new System.EventHandler(this.Timer_Tick);
             // 
             // MainForm
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(972, 566);
+            this.ClientSize = new System.Drawing.Size(1046, 610);
+            this.Controls.Add(this.progressBar);
             this.Controls.Add(this.OutputLabel);
             this.Controls.Add(this.StyleLabel);
             this.Controls.Add(this.ContentLabel);
-            this.Controls.Add(this.PythonBackend);
             this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.StyleBox);
             this.Controls.Add(this.ContentBox);
@@ -288,10 +294,10 @@
         private System.Windows.Forms.PictureBox ContentBox;
         private System.Windows.Forms.PictureBox StyleBox;
         private System.Windows.Forms.PictureBox OutputBox;
-        private System.Windows.Forms.TextBox PythonBackend;
         private System.Windows.Forms.Label ContentLabel;
         private System.Windows.Forms.Label StyleLabel;
         private System.Windows.Forms.Label OutputLabel;
+        private System.Windows.Forms.Timer timer;
+        public System.Windows.Forms.ProgressBar progressBar;
     }
 }
-
