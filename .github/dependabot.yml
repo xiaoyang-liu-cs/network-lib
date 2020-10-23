@@ -1,0 +1,14 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "12:00"
+  open-pull-requests-limit: 10
+  reviewers:
+  - xiaoyang-liu-cs
+  assignees:
+  - xiaoyang-liu-cs
+  labels:
+  - dependencies
